@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_css_include">
+    <sp_css_include action="INSERT_OR_UPDATE">
+        <name>test</name>
+        <source>local</source>
+        <sp_css display_value="test">ecc13536db711300689bfe1ebf9619fb</sp_css>
+        <sys_class_name>sp_css_include</sys_class_name>
+        <sys_created_by>amrynsky</sys_created_by>
+        <sys_created_on>2018-05-04 19:35:12</sys_created_on>
+        <sys_id>a0c17536db711300689bfe1ebf961912</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>test</sys_name>
+        <sys_package display_value="k18-sp" source="x_86566_k18_sp">0d49ef75db195300689bfe1ebf961943</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="k18-sp">0d49ef75db195300689bfe1ebf961943</sys_scope>
+        <sys_update_name>sp_css_include_a0c17536db711300689bfe1ebf961912</sys_update_name>
+        <sys_updated_by>amrynsky</sys_updated_by>
+        <sys_updated_on>2018-05-04 19:35:12</sys_updated_on>
+        <url/>
+    </sp_css_include>
+</record_update>

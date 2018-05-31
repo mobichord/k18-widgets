@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update>
+    <sys_documentation element="user" label="User" language="en" table="x_86566_k18_sp_incident_feedback">
+        <sys_documentation action="INSERT_OR_UPDATE">
+            <element>user</element>
+            <help/>
+            <hint/>
+            <label>User</label>
+            <language>en</language>
+            <name>x_86566_k18_sp_incident_feedback</name>
+            <plural>Users</plural>
+            <sys_class_name>sys_documentation</sys_class_name>
+            <sys_created_by>mcadmin</sys_created_by>
+            <sys_created_on>2018-04-07 18:45:55</sys_created_on>
+            <sys_id>6783a2cedb5d5300689bfe1ebf9619e7</sys_id>
+            <sys_mod_count>0</sys_mod_count>
+            <sys_name>User</sys_name>
+            <sys_package display_value="k18-sp" source="x_86566_k18_sp">0d49ef75db195300689bfe1ebf961943</sys_package>
+            <sys_policy/>
+            <sys_scope display_value="k18-sp">0d49ef75db195300689bfe1ebf961943</sys_scope>
+            <sys_update_name>sys_documentation_x_86566_k18_sp_incident_feedback_user_en</sys_update_name>
+            <sys_updated_by>mcadmin</sys_updated_by>
+            <sys_updated_on>2018-04-07 18:45:55</sys_updated_on>
+            <url/>
+            <url_target/>
+        </sys_documentation>
+    </sys_documentation>
+</record_update>

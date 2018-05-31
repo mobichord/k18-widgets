@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_angular_provider">
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+        <name>mcRating</name>
+        <script><![CDATA[function mcRating() {
+  'use strict';
+
+  var directive = {
+    restrict: 'E',
+    scope: true,
+    bindToController: {
+      readonly: '@',
+      initValue: '@',
+      size: '@',
+      onChange: '&'
+    },
+    controllerAs: 'vm',
+    controller: mcRatingController,
+    template: '<style>mc-rating .glyphicon-star{color:#FFC107}</style>' +
+      '<div ng-mouseleave="vm.mouseLeave()" class="pull-left"><i class="glyphicon" ' +
+      'ng-repeat="star in vm.stars track by $index" ng-class="star.cssClass" ' +
+      'ng-click="vm.click(star)" ng-mouseenter="vm.mouseEnter(star)"' +
+      'ng-style="::vm.style"></i></div>'
+  };
+
+  mcRatingController.$inject = ['$element'];
+
+  function mcRatingController($element) {
+    var vm = this;
+    $element.addClass('clearfix text-muted');
+
+    vm.$onInit = function() {
+      vm.stars = [{value: 1},{value: 2},{value: 3},{value: 4},{value: 5}];
+
+      vm.value = vm.initValue ? Number(vm.initValue) : 0;
+      if (vm.value > 5) {
+        vm.value = 5;
+      }
+      if (vm.value < 0) {
+        vm.value = 0;
+      }
+      sync(vm.value);
+
+      vm.style = {'font-size': (vm.size || '14px')};
+
+      if (vm.readonly !== 'true') {
+        vm.click = click;
+        vm.mouseEnter = mouseEnter;
+        vm.mouseLeave = mouseLeave;
+        vm.style.cursor = 'pointer';
+      }
+    };
+
+    function sync(val) {
+      for (var i = 0; i < vm.stars.length; i++) {
+        var star = vm.stars[i];
+        star.cssClass = (star.value <= val) ? 'glyphicon-star' : 'glyphicon-star-empty';
+      }
+    }
+
+    function click(star) {
+      vm.value = star.value;
+      vm.onChange({value: vm.value});
+      sync(vm.value);
+    }
+
+    function mouseEnter(star) {
+      sync(star.value);
+    }
+
+    function mouseLeave() {
+      sync(vm.value);
+    }
+  }
+
+  return directive;
+}
+]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>amrynsky</sys_created_by>
+        <sys_created_on>2018-05-07 21:19:18</sys_created_on>
+        <sys_id>cf56a5f7db311300689bfe1ebf9619ed</sys_id>
+        <sys_mod_count>3</sys_mod_count>
+        <sys_name>mcRating</sys_name>
+        <sys_package display_value="k18-sp" source="x_86566_k18_sp">0d49ef75db195300689bfe1ebf961943</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="k18-sp">0d49ef75db195300689bfe1ebf961943</sys_scope>
+        <sys_update_name>sp_angular_provider_cf56a5f7db311300689bfe1ebf9619ed</sys_update_name>
+        <sys_updated_by>amrynsky</sys_updated_by>
+        <sys_updated_on>2018-05-08 21:41:24</sys_updated_on>
+        <type>directive</type>
+    </sp_angular_provider>
+</record_update>

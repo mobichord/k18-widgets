@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sys_ui_page">
+    <sys_ui_page action="INSERT_OR_UPDATE">
+        <category>general</category>
+        <client_script/>
+        <description>Widget launcher</description>
+        <direct>false</direct>
+        <endpoint>x_86566_k18_sp_mc_widget_launcher.do</endpoint>
+        <html><![CDATA[<?xml version="1.0" encoding="UTF-8"?>
+<j:jelly xmlns:j="jelly:core" xmlns:g="glide" xmlns:g2="null" xmlns:j2="null" trim="false">
+	<g:ui_form>
+      <g:evaluate>
+		var widget_data = RP.getWindowProperties().param_widget_data;
+		var widget = RP.getWindowProperties().param_widget;
+	   </g:evaluate>
+      <g:evaluate var="jvar_widget_data" expression="widget_data" />
+	  <g:evaluate var="jvar_widget" expression="widget" />
+		<style>
+			#loadImg{position:absolute;z-index:999;}
+			#loadImg div{display:table-cell;width:520px;height:500px;background:#fff;text-align:center;vertical-align:middle;}
+		</style>
+		<div id="loadImg"><div><img width="32" height="32" src="loading.gif" /></div></div>
+		<iframe style="height: 600px;width:570px" src="/$sp.do?id=mc_widget_launcher&amp;widget=${jvar_widget}&amp;data=${jvar_widget_data}" frameborder="0"  onload="document.getElementById('loadImg').style.display='none';"/>
+	</g:ui_form>
+</j:jelly>]]></html>
+        <name>mc_widget_launcher</name>
+        <processing_script/>
+        <sys_class_name>sys_ui_page</sys_class_name>
+        <sys_created_by>test</sys_created_by>
+        <sys_created_on>2018-05-08 10:41:18</sys_created_on>
+        <sys_id>3e9d940cdb861300689bfe1ebf961907</sys_id>
+        <sys_mod_count>2</sys_mod_count>
+        <sys_name>mc_widget_launcher</sys_name>
+        <sys_package display_value="k18-sp" source="x_86566_k18_sp">0d49ef75db195300689bfe1ebf961943</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="k18-sp">0d49ef75db195300689bfe1ebf961943</sys_scope>
+        <sys_update_name>sys_ui_page_3e9d940cdb861300689bfe1ebf961907</sys_update_name>
+        <sys_updated_by>test</sys_updated_by>
+        <sys_updated_on>2018-05-08 12:14:14</sys_updated_on>
+    </sys_ui_page>
+</record_update>

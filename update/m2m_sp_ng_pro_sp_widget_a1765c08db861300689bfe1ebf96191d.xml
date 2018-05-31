@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="m2m_sp_ng_pro_sp_widget">
+    <m2m_sp_ng_pro_sp_widget action="INSERT_OR_UPDATE">
+        <sp_angular_provider display_value="mcRating">cf56a5f7db311300689bfe1ebf9619ed</sp_angular_provider>
+        <sp_widget display_value="mcIncidentRatingList">7b64e1bfdb311300689bfe1ebf961941</sp_widget>
+        <sys_class_name>m2m_sp_ng_pro_sp_widget</sys_class_name>
+        <sys_created_by>amrynsky</sys_created_by>
+        <sys_created_on>2018-05-08 10:08:42</sys_created_on>
+        <sys_id>a1765c08db861300689bfe1ebf96191d</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>mcRating.mcIncidentRatingList</sys_name>
+        <sys_package display_value="k18-sp" source="x_86566_k18_sp">0d49ef75db195300689bfe1ebf961943</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="k18-sp">0d49ef75db195300689bfe1ebf961943</sys_scope>
+        <sys_update_name>m2m_sp_ng_pro_sp_widget_a1765c08db861300689bfe1ebf96191d</sys_update_name>
+        <sys_updated_by>amrynsky</sys_updated_by>
+        <sys_updated_on>2018-05-08 10:08:42</sys_updated_on>
+    </m2m_sp_ng_pro_sp_widget>
+</record_update>

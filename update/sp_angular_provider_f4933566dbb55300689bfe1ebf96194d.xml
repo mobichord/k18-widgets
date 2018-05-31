@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_angular_provider">
+    <sp_angular_provider action="INSERT_OR_UPDATE">
+        <name>mcDemoDataService</name>
+        <script><![CDATA[function mcDemoDataService($http, $log) {
+  var service = {
+    createRecord: createRecord,
+    getAggregate: getAggregate
+  };
+
+  function createRecord(table, data) {
+    var url = '/api/now/table/' + table + '?sysparm_fields=sys_id';
+
+    return $http.post(url, data)
+      .then(processData)['catch'](function(res) {
+      if (res.status === 404) {
+        //no records found
+        return null;
+      }
+      else {
+        logError(url, res, 'Unable to update data.');
+      }
+    });
+
+    function processData(data) {
+      if (data.data) {
+        return data.data.result;
+      }
+      else {
+        return null;
+      }
+    }
+  }
+
+  function getAggregate(table, query, groupBy, aggregation, aggregationFields, skipDisplayValues) {
+
+    var params = {
+      sysparm_display_value: skipDisplayValues ? 'false' : 'all',
+      sysparm_group_by: groupBy,
+      sysparm_count: true,
+      sysparm_order_by: 'COUNT^DESC'
+    };
+    if (query) {
+      params.sysparm_query = query;
+    }
+    if (aggregation && aggregationFields) {
+      params['sysparm_' + aggregation + '_fields'] = aggregationFields;
+    }
+
+    var url = 'api/now/stats/' + table + '?' + encodeQueryString(params);
+
+    return $http.get(url)
+      .then(processData)['catch'](function(res) {
+      if (res.status === 404) {
+        //no records found
+        return null;
+      }
+      else {
+        logError(url, res, 'Unable to update data.');
+      }
+    });
+
+    function processData(res) {
+      var data;
+      if (res.data) {
+        data = res.data.result;
+      }
+      if (!data) {
+        data = [];
+      }
+
+      data = data.map(function(record) {
+        var res = {
+          count: Number(record.stats.count || 0),
+          groups: record.groupby_fields
+        };
+        if (aggregation) {
+          res[aggregation] = record.stats[aggregation];
+        }
+        return res;
+      });
+      return data;
+    }
+  }
+
+  function logError(url, res, message) {
+    var errorInfo = res.data ? 'Error occurred: ' + res.data.error.message + '.' : '';
+    $log.error(message + errorInfo + ' Url: ' + url);
+  }
+
+  function encodeQueryString(data) {
+    var ret = [];
+    for (var d in data) {
+      var value = data[d];
+      if (Array.isArray(value)) {
+        for (var i in value){
+          ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(value[i]));
+        }
+      }
+      else {
+        ret.push(encodeURIComponent(d) + '=' + encodeURIComponent(value));
+      }
+    }
+    return ret.join('&');
+  }
+
+  return service;
+}
+]]></script>
+        <sys_class_name>sp_angular_provider</sys_class_name>
+        <sys_created_by>amrynsky</sys_created_by>
+        <sys_created_on>2018-05-04 01:04:38</sys_created_on>
+        <sys_id>f4933566dbb55300689bfe1ebf96194d</sys_id>
+        <sys_mod_count>59</sys_mod_count>
+        <sys_name>mcDemoDataService</sys_name>
+        <sys_package display_value="k18-sp" source="x_86566_k18_sp">0d49ef75db195300689bfe1ebf961943</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="k18-sp">0d49ef75db195300689bfe1ebf961943</sys_scope>
+        <sys_update_name>sp_angular_provider_f4933566dbb55300689bfe1ebf96194d</sys_update_name>
+        <sys_updated_by>amrynsky</sys_updated_by>
+        <sys_updated_on>2018-05-08 21:41:19</sys_updated_on>
+        <type>service</type>
+    </sp_angular_provider>
+</record_update>

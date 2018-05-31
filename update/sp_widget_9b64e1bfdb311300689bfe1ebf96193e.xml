@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function mcIncidentFeedbackController(mcDemoDataService) {
+  var vm = this;
+
+  vm.$onInit = function () {
+    vm.incident = (vm.options ? vm.options.incident : '');
+    if (!vm.incident) {
+      vm.dataError = 'Incident identifier is not provided';
+      return;
+    }
+
+    vm.submit = submit;
+  };
+
+  function submit() {
+    vm.messageError = '';
+    vm.ratingError = '';
+    var error = false;
+    if (!vm.rating) {
+      vm.ratingError = 'Please select rating value';
+      error = true;
+    }
+
+    if (!vm.message) {
+      vm.messageError = 'Please populate message';
+      error = true;
+    }
+
+    if (error) {
+      return;
+    }
+
+    return mcDemoDataService.createRecord('x_86566_k18_sp_incident_feedback',
+      {
+        incident: vm.incident,
+        rating: vm.rating,
+        message: vm.message})
+      .then(function () {
+        alert('Your feedback has been added');
+      });
+  }
+}
+]]></client_script>
+        <controller_as>c</controller_as>
+        <css>/* Styles: mcIncidentFeedback */</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>mcIncidentFeedback widget</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>mcIncidentFeedback</id>
+        <internal>false</internal>
+        <link/>
+        <name>mcIncidentFeedback</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>amrynsky</sys_created_by>
+        <sys_created_on>2018-05-07 21:10:52</sys_created_on>
+        <sys_id>9b64e1bfdb311300689bfe1ebf96193e</sys_id>
+        <sys_mod_count>1</sys_mod_count>
+        <sys_name>mcIncidentFeedback</sys_name>
+        <sys_package display_value="k18-sp" source="x_86566_k18_sp">0d49ef75db195300689bfe1ebf961943</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="k18-sp">0d49ef75db195300689bfe1ebf961943</sys_scope>
+        <sys_update_name>sp_widget_9b64e1bfdb311300689bfe1ebf96193e</sys_update_name>
+        <sys_updated_by>amrynsky</sys_updated_by>
+        <sys_updated_on>2018-05-07 21:19:20</sys_updated_on>
+        <template><![CDATA[<div class="form-group clearfix">
+    <mc-rating size="30px" on-change="vm.rating=value"></mc-rating>
+    <div class="text-danger" ng-show="vm.ratingError">{{vm.ratingError}}</div>
+  </div>
+
+  <div class="form-group">
+    <label for="feedback-message">Message</label>
+    <textarea class="form-control" rows="3" id="feedback-message" ng-model="vm.message"></textarea>
+    <div class="text-danger" ng-show="vm.messageError">{{vm.messageError}}</div>
+  </div>
+  <button class="btn btn-primary" ng-click="vm.submit()">Submit</button>
+  <div class="text-danger" ng-show="vm.dataError">{{vm.dataError}}</div>
+]]></template>
+    </sp_widget>
+</record_update>

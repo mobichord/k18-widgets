@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<database>
+    <element label="Incident Feedback" max_length="40" name="x_86566_k18_sp_incident_feedback" type="collection">
+        <element label="Incident" mandatory="true" max_length="32" name="incident" read_only="true" reference="incident" reference_cascade_rule="delete" type="reference"/>
+        <element label="Message" mandatory="true" max_length="4000" name="message" read_only="true" type="string"/>
+        <element label="Rating" mandatory="true" max_length="40" name="rating" read_only="true" type="integer"/>
+        <element default="javascript:gs.getUserID();" dynamic_default_value="bdcb83a85f220100a9ad2572f2b4773d" label="User" mandatory="true" max_length="32" name="user" read_only="true" reference="sys_user" type="reference" use_dynamic_default="true"/>
+        <index name="index">
+            <element name="incident"/>
+        </index>
+        <index name="index2">
+            <element name="user"/>
+        </index>
+    </element>
+</database>

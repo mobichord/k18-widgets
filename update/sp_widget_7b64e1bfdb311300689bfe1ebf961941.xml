@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<record_update table="sp_widget">
+    <sp_widget action="INSERT_OR_UPDATE">
+        <client_script><![CDATA[function mcIncidentRatingListController(mcDemoDataService) {
+  var vm = this;
+  
+  mcDemoDataService.getAggregate('x_86566_k18_sp_incident_feedback', '', 'incident,incident.short_description', 'sum', 'rating', true)
+    .then(function (data) {
+      vm.loaded = true;
+      vm.items = data.map(function (item) {
+        return {
+          id: item.groups[0].value,
+          name: item.groups[1].value,
+          rating: Math.round(Number(item.sum.rating) / item.count)
+        };
+      })
+        .sort(function (a, b) {
+          return a.rating > b.rating ? -1 : (a.rating < b.rating ? 1 : 0);
+        });
+    });
+}
+]]></client_script>
+        <controller_as>vm</controller_as>
+        <css>/* Styles: mcIncidentRatingList */</css>
+        <data_table>sp_instance</data_table>
+        <demo_data/>
+        <description>mcIncidentRatingList widget</description>
+        <docs/>
+        <field_list/>
+        <has_preview>false</has_preview>
+        <id>mc-incident-rating-list</id>
+        <internal>false</internal>
+        <link/>
+        <name>mcIncidentRatingList</name>
+        <option_schema/>
+        <public>false</public>
+        <roles/>
+        <script><![CDATA[(function() {  /* populate the 'data' object */  /* e.g., data.table = $sp.getValue('table'); */})();]]></script>
+        <servicenow>false</servicenow>
+        <sys_class_name>sp_widget</sys_class_name>
+        <sys_created_by>amrynsky</sys_created_by>
+        <sys_created_on>2018-05-07 21:10:54</sys_created_on>
+        <sys_id>7b64e1bfdb311300689bfe1ebf961941</sys_id>
+        <sys_mod_count>4</sys_mod_count>
+        <sys_name>mcIncidentRatingList</sys_name>
+        <sys_package display_value="k18-sp" source="x_86566_k18_sp">0d49ef75db195300689bfe1ebf961943</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="k18-sp">0d49ef75db195300689bfe1ebf961943</sys_scope>
+        <sys_update_name>sp_widget_7b64e1bfdb311300689bfe1ebf961941</sys_update_name>
+        <sys_updated_by>amrynsky</sys_updated_by>
+        <sys_updated_on>2018-05-08 21:41:59</sys_updated_on>
+        <template><![CDATA[<div ng-hide="vm.loaded" class="text-center" style="padding-top: 50px">
+  <i class="glyphicon glyphicon-refresh fa-spin fa-2x text-muted"></i>
+</div>
+<div ng-repeat="item in vm.items">
+  <div class="form-group">
+    <label for="incident-name">Name</label>
+    <input class="form-control" type="text" id="incident-name" readonly ng-model="item.name">
+  </div>
+  <div class="form-group">
+    <mc-rating readonly="true" size="30px" init-value="{{::item.rating}}"></mc-rating>
+  </div>
+</div>
+]]></template>
+    </sp_widget>
+</record_update>
